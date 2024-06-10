@@ -22,7 +22,7 @@ export class LocalDb implements IlocalDb {
   async getCoisasQueAmo(): Promise<CoisaQueAmoEntity[]> {
     try {
       const res = await axios.get<CoisaQueAmoEntity[]>(
-        "http://back-valentines.vercel.app/coisasQueAmoEmVoce"
+        "https://back-valentines.vercel.app/coisasQueAmoEmVoce"
       );
       return res.data;
     } catch (error) {
@@ -34,7 +34,7 @@ export class LocalDb implements IlocalDb {
   async getFilmes(): Promise<FilmesDbEntity[]> {
     try {
       const res = await axios.get<FilmesDbEntity[]>(
-        "http://back-valentines.vercel.app/filmes"
+        "https://back-valentines.vercel.app/filmes"
       );
       return res.data;
     } catch (error) {
@@ -45,10 +45,13 @@ export class LocalDb implements IlocalDb {
 
   async inserirFilme(nomeFilme: string): Promise<AxiosResponse> {
     try {
-      const res = await axios.post("http://back-valentines.vercel.app/filmes", {
-        nome: nomeFilme,
-        status: FilmesStatusEnum.NAO_INICIADO,
-      });
+      const res = await axios.post(
+        "https://back-valentines.vercel.app/filmes",
+        {
+          nome: nomeFilme,
+          status: FilmesStatusEnum.NAO_INICIADO,
+        }
+      );
       return res;
     } catch (error) {
       console.log(error);
@@ -63,7 +66,7 @@ export class LocalDb implements IlocalDb {
   }): Promise<AxiosResponse> {
     try {
       const res = await axios.put(
-        "http://back-valentines.vercel.app/filmes/".concat(req.id),
+        "https://back-valentines.vercel.app/filmes/".concat(req.id),
         {
           nome: req.nome,
           status: req.status,
@@ -79,7 +82,7 @@ export class LocalDb implements IlocalDb {
   async atualizarCoisaQueAmo(item: CoisaQueAmoEntity): Promise<void> {
     try {
       await axios.put(
-        `http://back-valentines.vercel.app/coisasQueAmoEmVoce/${item.id}`,
+        `https://back-valentines.vercel.app/coisasQueAmoEmVoce/${item.id}`,
         {
           frase: item.frase,
           visto: true,
@@ -94,7 +97,7 @@ export class LocalDb implements IlocalDb {
   async getFotos(): Promise<FotosEntity[]> {
     try {
       const res = await axios.get<FotosEntity[]>(
-        `http://back-valentines.vercel.app/fotos`
+        `https://back-valentines.vercel.app/fotos`
       );
 
       return res.data;
