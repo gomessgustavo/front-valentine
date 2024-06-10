@@ -22,7 +22,7 @@ export class LocalDb implements IlocalDb {
   async getCoisasQueAmo(): Promise<CoisaQueAmoEntity[]> {
     try {
       const res = await axios.get<CoisaQueAmoEntity[]>(
-        "http://localhost:8000/coisasQueAmoEmVoce"
+        "http://back-valentines.vercel.app/coisasQueAmoEmVoce"
       );
       return res.data;
     } catch (error) {
@@ -34,7 +34,7 @@ export class LocalDb implements IlocalDb {
   async getFilmes(): Promise<FilmesDbEntity[]> {
     try {
       const res = await axios.get<FilmesDbEntity[]>(
-        "http://localhost:8000/filmes"
+        "http://back-valentines.vercel.app/filmes"
       );
       return res.data;
     } catch (error) {
@@ -45,7 +45,7 @@ export class LocalDb implements IlocalDb {
 
   async inserirFilme(nomeFilme: string): Promise<AxiosResponse> {
     try {
-      const res = await axios.post("http://localhost:8000/filmes", {
+      const res = await axios.post("http://back-valentines.vercel.app/filmes", {
         nome: nomeFilme,
         status: FilmesStatusEnum.NAO_INICIADO,
       });
@@ -63,7 +63,7 @@ export class LocalDb implements IlocalDb {
   }): Promise<AxiosResponse> {
     try {
       const res = await axios.put(
-        "http://localhost:8000/filmes/".concat(req.id),
+        "http://back-valentines.vercel.app/filmes/".concat(req.id),
         {
           nome: req.nome,
           status: req.status,
@@ -78,10 +78,13 @@ export class LocalDb implements IlocalDb {
 
   async atualizarCoisaQueAmo(item: CoisaQueAmoEntity): Promise<void> {
     try {
-      await axios.put(`http://localhost:8000/coisasQueAmoEmVoce/${item.id}`, {
-        frase: item.frase,
-        visto: true,
-      });
+      await axios.put(
+        `http://back-valentines.vercel.app/coisasQueAmoEmVoce/${item.id}`,
+        {
+          frase: item.frase,
+          visto: true,
+        }
+      );
     } catch (error) {
       console.log(error);
       throw error;
@@ -90,7 +93,9 @@ export class LocalDb implements IlocalDb {
 
   async getFotos(): Promise<FotosEntity[]> {
     try {
-      const res = await axios.get<FotosEntity[]>(`http://localhost:8000/fotos`);
+      const res = await axios.get<FotosEntity[]>(
+        `http://back-valentines.vercel.app/fotos`
+      );
 
       return res.data;
     } catch (error) {
