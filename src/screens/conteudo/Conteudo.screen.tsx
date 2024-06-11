@@ -13,6 +13,7 @@ import { useState } from "react";
 import { FilmesContainer } from "../../components/filmes/Filmes.style";
 import { Filmes } from "../../components/filmes/Filmes.component";
 import { Fotos } from "../../components/fotos/Fotos.component";
+import { Restaurantes } from "../../components/restaurantes/Restaurantes.component";
 
 export const Home = () => {
   const [msg, setMsg] = useState<CoisaQueAmoEntity>(
@@ -22,6 +23,7 @@ export const Home = () => {
   const [modalAberto, setModalAberto] = useState(false);
   const [modalFilmesAberto, setModalFilmesAberto] = useState(false);
   const [modalFotosAberto, setModalFotosAberto] = useState(false);
+  const [modalRestaurantes, setModalRestaurantes] = useState(false);
 
   const getCoisaQueAmo = async () => {
     setModalAberto(true);
@@ -52,7 +54,7 @@ export const Home = () => {
         estaAberto={modalFilmesAberto}
         fecharModal={() => setModalFilmesAberto(false)}
       >
-        {modalFilmesAberto ? <Filmes /> : <div></div>}
+        <Filmes />
       </Modal>
       <Modal
         width="100%"
@@ -61,13 +63,24 @@ export const Home = () => {
         heightConteudo="auto"
         fecharModal={() => setModalFotosAberto(false)}
       >
-        {modalFotosAberto ? <Fotos /> : <div></div>}
+        <Fotos />
+      </Modal>
+      <Modal
+        width="100%"
+        height="70vh"
+        padding="5px"
+        estaAberto={modalRestaurantes}
+        heightConteudo="auto"
+        fecharModal={() => setModalRestaurantes(false)}
+      >
+        <Restaurantes />
       </Modal>
       <ConteudoAbsolute>
         <Conteudo>
           <Botao onClick={getCoisaQueAmo}>Coisas que amo em você</Botao>
           <Botao onClick={() => setModalFotosAberto(true)}>Álbum</Botao>
           <Botao onClick={() => setModalFilmesAberto(true)}>Filmes</Botao>
+          <Botao onClick={() => setModalRestaurantes(true)}>Restaurantes</Botao>
         </Conteudo>
       </ConteudoAbsolute>
     </ConteudoContainer>

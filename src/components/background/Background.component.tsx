@@ -13,8 +13,11 @@ export const BackgroundComponent = () => {
     <BackgroundBubbles>
       <Home />
       <Bubbles>
-        {Array.from(Array(width).keys()).map(() => (
-          <BubbleSpan $tempo={Math.floor(Math.random() * 30)}></BubbleSpan>
+        {Array.from(Array(width).keys()).map((i) => (
+          <BubbleSpan
+            key={i}
+            $tempo={Math.floor(Math.random() * 30)}
+          ></BubbleSpan>
         ))}
       </Bubbles>
     </BackgroundBubbles>

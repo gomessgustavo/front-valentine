@@ -3,7 +3,6 @@ import styled from "styled-components";
 export interface ModalProps {
   $width: string;
   $height: string;
-  visivel: boolean;
   bg?: string;
 }
 
@@ -13,7 +12,6 @@ export const ModalContainer = styled.div<ModalProps>`
   height: ${(props) => props.$height};
   max-height: 70vh;
   overflow: auto;
-  display: ${(props) => (props.visivel ? "block" : "none")};
   z-index: 5;
   background: white;
   border-radius: 5px;
@@ -27,7 +25,10 @@ export const ModalContainer = styled.div<ModalProps>`
   }
 `;
 
-export const ModalConteudo = styled.div<{ $height?: string }>`
+export const ModalConteudo = styled.div<{
+  $height?: string;
+  $padding?: string;
+}>`
   position: relative;
   width: 100%;
   height: ${(props) => props.$height ?? "100%"};
@@ -35,7 +36,7 @@ export const ModalConteudo = styled.div<{ $height?: string }>`
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 50px;
+  padding: ${(props) => props.$padding ?? "50px"};
   color: white;
 `;
 
@@ -43,14 +44,12 @@ export const BotaoFechaModal = styled.button`
   position: absolute;
   top: 0;
   right: 0;
-  width: 30px;
-  height: 30px;
   background: none;
   margin: 0;
   border: 0;
   cursor: pointer;
   color: white;
-  margin: 2px;
+  margin: 20px;
   transition: 0.2s;
 
   &:hover {

@@ -9,24 +9,28 @@ interface PropsChildren {
   width: string;
   height: string;
   heightConteudo?: string;
+  padding?: string;
 }
 
 export const Modal = ({
   children,
-  estaAberto,
+  estaAberto = false,
   fecharModal,
   width,
   height,
   heightConteudo,
+  padding,
 }: PropsChildren) => {
-  return (
-    <ModalContainer visivel={estaAberto} $height={height} $width={width}>
-      <ModalConteudo $height={heightConteudo}>
+  return estaAberto ? (
+    <ModalContainer $height={height} $width={width}>
+      <ModalConteudo $height={heightConteudo} $padding={padding}>
         {children}
         <BotaoFechaModal onClick={fecharModal}>
           <XCircle />
         </BotaoFechaModal>
       </ModalConteudo>
     </ModalContainer>
+  ) : (
+    <div style={{ display: "none" }}></div>
   );
 };
