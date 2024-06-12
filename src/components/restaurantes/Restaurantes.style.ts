@@ -68,10 +68,11 @@ export const RestauranteFiltro = styled.div`
 
 export const RestaurantesSorteioContainer = styled.form`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
+  padding: 10px;
 
   label {
     display: flex;
